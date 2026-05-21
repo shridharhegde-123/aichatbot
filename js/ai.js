@@ -3,12 +3,8 @@
    ============================================================ */
 
 const AI_CONFIG = {
-
   model: "llama-3.3-70b-versatile",
-
-  get apiKey() {
-    return localStorage.getItem("GROQ_API_KEY") || "";
-  }
+  apiKey: "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"
 };
 
 
