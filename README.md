@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NexusAI — ChatGPT-Style AI Chat App
 
 A fully frontend-only, premium AI chat interface built with vanilla HTML, CSS, and JavaScript. No backend required.
@@ -93,3 +94,6 @@ python3 -m http.server 3000 --directory aichat
 - Camera input uses `capture="environment"` (rear camera by default)
 - Touch-friendly tap targets throughout
 - Voice input works on iOS Safari and Chrome for Android
+=======
+# aichatbot
+>>>>>>> 4fad1d8e0391b1d08c3240c2cae6720b2aac76bd
