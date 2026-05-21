@@ -1,0 +1,282 @@
+/* ============================================================
+   chat.css — Chat area, message bubbles, welcome screen
+   ============================================================ */
+
+/* ── CHAT AREA ── */
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 24px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+  position: relative;
+}
+
+.chat-area::-webkit-scrollbar { width: 5px; }
+.chat-area::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+/* ── WELCOME SCREEN ── */
+.welcome-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 40px 20px 20px;
+  text-align: center;
+  animation: fadeInUp 0.5s var(--ease) both;
+  position: relative;
+}
+
+.welcome-glow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(124,106,255,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.welcome-icon {
+  font-size: 3rem;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 0 20px rgba(124,106,255,0.5));
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.welcome-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.welcome-sub {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 36px;
+}
+
+/* ── SUGGESTION CARDS ── */
+.suggestion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.suggestion-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  transition: background var(--trans-fast), border-color var(--trans-fast),
+              color var(--trans-fast), transform var(--trans-fast);
+  cursor: pointer;
+}
+
+.suggestion-card:hover {
+  background: var(--bg-active);
+  border-color: var(--accent-1);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.suggestion-card i {
+  font-size: 1.1rem;
+  color: var(--accent-1);
+  flex-shrink: 0;
+}
+
+/* ── MESSAGES CONTAINER ── */
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 12px;
+}
+
+/* ── MESSAGE ROW ── */
+.message-row {
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.3s var(--ease) both;
+}
+
+.message-row.user {
+  align-items: flex-end;
+}
+
+.message-row.ai {
+  align-items: flex-start;
+}
+
+/* ── AVATAR + NAME ── */
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.message-row.user .message-header {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.avatar.ai-avatar {
+  background: var(--accent-grad);
+  color: #fff;
+  box-shadow: var(--accent-glow);
+}
+
+.avatar.user-avatar {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+}
+
+.sender-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+}
+
+.message-timestamp {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  margin-left: 4px;
+}
+
+/* ── BUBBLE ── */
+.message-bubble {
+  max-width: min(86%, 620px);
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  position: relative;
+  word-break: break-word;
+}
+
+.message-row.user .message-bubble {
+  background: var(--user-bg);
+  color: var(--user-text);
+  border-bottom-right-radius: 6px;
+  box-shadow: var(--shadow-sm);
+}
+
+.message-row.ai .message-bubble {
+  background: var(--ai-bg);
+  color: var(--ai-text);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 6px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Image inside bubble */
+.message-image {
+  max-width: 260px;
+  border-radius: var(--radius-md);
+  margin-bottom: 8px;
+  object-fit: cover;
+}
+
+/* ── ACTIONS (copy / tts) ── */
+.message-actions {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  opacity: 0;
+  transition: opacity var(--trans-fast);
+}
+
+.message-row:hover .message-actions {
+  opacity: 1;
+}
+
+.message-row.user .message-actions {
+  justify-content: flex-end;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--trans-fast), color var(--trans-fast);
+}
+
+.action-btn:hover {
+  background: var(--bg-active);
+  color: var(--text-primary);
+}
+
+/* ── TYPING INDICATOR ── */
+.typing-bubble {
+  background: var(--ai-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  border-bottom-left-radius: 6px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.typing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-1);
+  animation: typing-bounce 1.2s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }

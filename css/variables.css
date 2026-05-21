@@ -1,0 +1,95 @@
+/* ============================================================
+   variables.css — Design tokens (dark + light themes)
+   ============================================================ */
+
+/* ── DARK THEME (default) ── */
+:root, [data-theme="dark"] {
+  /* Backgrounds */
+  --bg-base:        #0d0d10;
+  --bg-surface:     #141418;
+  --bg-elevated:    #1c1c22;
+  --bg-glass:       rgba(28, 28, 34, 0.72);
+  --bg-glass-heavy: rgba(20, 20, 24, 0.88);
+  --bg-hover:       rgba(255,255,255,0.05);
+  --bg-active:      rgba(255,255,255,0.08);
+
+  /* Borders */
+  --border:         rgba(255,255,255,0.08);
+  --border-strong:  rgba(255,255,255,0.14);
+
+  /* Text */
+  --text-primary:   #f0f0f4;
+  --text-secondary: #8e8ea0;
+  --text-tertiary:  #5c5c70;
+  --text-inverse:   #0d0d10;
+
+  /* Accent / Brand */
+  --accent-1:       #7c6aff;
+  --accent-2:       #a855f7;
+  --accent-grad:    linear-gradient(135deg, #7c6aff 0%, #a855f7 100%);
+  --accent-glow:    0 0 24px rgba(124, 106, 255, 0.35);
+
+  /* User bubble */
+  --user-bg:        linear-gradient(135deg, #7c6aff 0%, #a855f7 100%);
+  --user-text:      #ffffff;
+
+  /* AI bubble */
+  --ai-bg:          #1c1c22;
+  --ai-text:        #f0f0f4;
+
+  /* Functional */
+  --danger:         #ff4d6d;
+  --success:        #34d399;
+  --warning:        #fbbf24;
+
+  /* Sidebar width */
+  --sidebar-w:      260px;
+
+  /* Radii */
+  --radius-sm:      8px;
+  --radius-md:      14px;
+  --radius-lg:      20px;
+  --radius-xl:      28px;
+  --radius-pill:    999px;
+
+  /* Shadows */
+  --shadow-sm:      0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:      0 4px 16px rgba(0,0,0,0.5);
+  --shadow-lg:      0 12px 40px rgba(0,0,0,0.6);
+
+  /* Transitions */
+  --ease:           cubic-bezier(0.4, 0, 0.2, 1);
+  --trans-fast:     150ms var(--ease);
+  --trans-mid:      260ms var(--ease);
+  --trans-slow:     400ms var(--ease);
+
+  /* Topbar */
+  --topbar-h:       58px;
+  --input-area-h:   auto;
+}
+
+/* ── LIGHT THEME ── */
+[data-theme="light"] {
+  --bg-base:        #f6f6f9;
+  --bg-surface:     #ffffff;
+  --bg-elevated:    #ededf3;
+  --bg-glass:       rgba(255,255,255,0.80);
+  --bg-glass-heavy: rgba(246,246,249,0.92);
+  --bg-hover:       rgba(0,0,0,0.04);
+  --bg-active:      rgba(0,0,0,0.08);
+
+  --border:         rgba(0,0,0,0.08);
+  --border-strong:  rgba(0,0,0,0.14);
+
+  --text-primary:   #1a1a2e;
+  --text-secondary: #5a5a72;
+  --text-tertiary:  #9090a8;
+  --text-inverse:   #ffffff;
+
+  --ai-bg:          #ffffff;
+  --ai-text:        #1a1a2e;
+
+  --shadow-sm:      0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md:      0 4px 16px rgba(0,0,0,0.12);
+  --shadow-lg:      0 12px 40px rgba(0,0,0,0.16);
+}

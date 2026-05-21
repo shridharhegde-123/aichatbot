@@ -1,0 +1,295 @@
+/* ============================================================
+   sidebar.css — Left navigation panel
+   ============================================================ */
+
+.sidebar {
+  width: var(--sidebar-w);
+  height: 100dvh;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: width var(--trans-mid), transform var(--trans-mid), background var(--trans-mid);
+  z-index: 50;
+}
+
+/* ── HEADER ── */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 14px 14px;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--accent-grad);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #fff;
+  box-shadow: var(--accent-glow);
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  background: var(--accent-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sidebar-close {
+  display: none; /* shown on mobile */
+}
+
+/* ── NEW CHAT BUTTON ── */
+.new-chat-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 10px 14px;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  background: var(--accent-grad);
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  box-shadow: var(--accent-glow);
+  transition: filter var(--trans-fast), transform var(--trans-fast);
+  flex-shrink: 0;
+}
+
+.new-chat-btn:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+
+.new-chat-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.new-chat-btn i {
+  font-size: 1rem;
+}
+
+/* ── HISTORY SECTION ── */
+.chat-history-section {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.chat-history-section::-webkit-scrollbar {
+  width: 4px;
+}
+.chat-history-section::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.history-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  padding: 4px 8px 8px;
+}
+
+.chat-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Individual history item */
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--trans-fast);
+  min-width: 0;
+}
+
+.history-item:hover {
+  background: var(--bg-hover);
+}
+
+.history-item.active {
+  background: var(--bg-active);
+}
+
+.history-item i {
+  color: var(--text-tertiary);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.history-item-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+}
+
+.history-item:hover .history-item-text {
+  color: var(--text-primary);
+}
+
+.history-item.active .history-item-text {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.history-delete-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity var(--trans-fast), background var(--trans-fast), color var(--trans-fast);
+  flex-shrink: 0;
+}
+
+.history-item:hover .history-delete-btn {
+  opacity: 1;
+}
+
+.history-delete-btn:hover {
+  background: rgba(255,77,109,0.15);
+  color: var(--danger);
+}
+
+/* ── SIDEBAR FOOTER ── */
+.sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: var(--radius-md);
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  transition: background var(--trans-fast), color var(--trans-fast);
+  width: 100%;
+  text-align: left;
+}
+
+.footer-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.footer-btn i {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* ── THEME TOGGLE ── */
+.theme-toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.toggle-switch {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  transition: background var(--trans-mid);
+}
+
+.toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: var(--text-tertiary);
+  border-radius: 50%;
+  transition: transform var(--trans-mid), background var(--trans-mid);
+}
+
+.toggle-switch input:checked + .toggle-track {
+  background: var(--accent-1);
+  border-color: var(--accent-1);
+}
+
+.toggle-switch input:checked + .toggle-track::after {
+  transform: translateX(18px);
+  background: #fff;
+}
+
+/* ── SIDEBAR BACKDROP (mobile overlay) ── */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  z-index: 49;
+  opacity: 0;
+  transition: opacity var(--trans-mid);
+}
+
+.sidebar-backdrop.visible {
+  opacity: 1;
+}

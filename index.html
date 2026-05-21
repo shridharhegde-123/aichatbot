@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NexusAI — Your Intelligent Assistant</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js"></script>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="stylesheet" href="css/chat.css" />
+  <link rel="stylesheet" href="css/input.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <span class="brand-icon"><i class="ph-fill ph-shooting-star"></i></span>
+        <span class="brand-name">NexusAI</span>
+      </div>
+      <button class="icon-btn sidebar-close" id="sidebarClose" title="Close sidebar">
+        <i class="ph ph-x"></i>
+      </button>
+    </div>
+
+    <!-- New Chat -->
+    <button class="new-chat-btn" id="newChatBtn">
+      <i class="ph ph-plus"></i>
+      <span>New Chat</span>
+    </button>
+
+    <!-- Chat History -->
+    <div class="chat-history-section">
+      <p class="history-label">Recent</p>
+      <ul class="chat-history-list" id="chatHistoryList">
+        <!-- Populated by JS -->
+      </ul>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <button class="footer-btn" id="clearAllBtn" title="Clear all chats">
+        <i class="ph ph-trash"></i>
+        <span>Clear all chats</span>
+      </button>
+      <button class="footer-btn" id="downloadBtn" title="Download chat">
+        <i class="ph ph-download-simple"></i>
+        <span>Download chat</span>
+      </button>
+      <div class="theme-toggle-wrap">
+        <i class="ph ph-moon"></i>
+        <label class="toggle-switch">
+          <input type="checkbox" id="themeToggle" />
+          <span class="toggle-track"></span>
+        </label>
+        <i class="ph ph-sun"></i>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sidebar backdrop (mobile) -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ===== MAIN AREA ===== -->
+  <main class="main" id="main">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <button class="icon-btn" id="menuToggle" title="Toggle sidebar">
+        <i class="ph ph-list"></i>
+      </button>
+      <div class="topbar-center">
+        <span class="model-badge"><i class="ph-fill ph-cpu"></i> NexusAI 2.0</span>
+      </div>
+      <button class="icon-btn" id="clearChatBtn" title="Clear current chat">
+        <i class="ph ph-eraser"></i>
+      </button>
+    </header>
+
+    <!-- ===== CHAT AREA ===== -->
+    <section class="chat-area" id="chatArea">
+
+      <!-- Welcome Screen (shown when empty) -->
+      <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-glow"></div>
+        <div class="welcome-icon"><i class="ph-fill ph-shooting-star"></i></div>
+        <h1 class="welcome-title">Hello, I'm NexusAI</h1>
+        <p class="welcome-sub">Your intelligent assistant. Ask me anything.</p>
+        <div class="suggestion-grid">
+          <button class="suggestion-card" data-prompt="Explain quantum computing in simple terms">
+            <i class="ph ph-atom"></i>
+            <span>Explain quantum computing</span>
+          </button>
+          <button class="suggestion-card" data-prompt="Write a short poem about the ocean">
+            <i class="ph ph-pencil-line"></i>
+            <span>Write a short poem</span>
+          </button>
+          <button class="suggestion-card" data-prompt="Give me 5 tips to improve productivity">
+            <i class="ph ph-lightning"></i>
+            <span>Productivity tips</span>
+          </button>
+          <button class="suggestion-card" data-prompt="Summarize the history of the internet">
+            <i class="ph ph-globe"></i>
+            <span>History of the internet</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages Container -->
+      <div class="messages-container" id="messagesContainer">
+        <!-- Messages injected here by JS -->
+      </div>
+
+    </section>
+
+    <!-- ===== INPUT AREA ===== -->
+    <footer class="input-area">
+
+      <!-- Image Preview -->
+      <div class="image-preview-bar" id="imagePreviewBar" style="display:none;">
+        <div class="image-preview-wrap">
+          <img id="imagePreview" src="" alt="Preview" />
+          <button class="remove-image-btn" id="removeImageBtn" title="Remove image">
+            <i class="ph ph-x"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Emoji Picker (simple) -->
+      <div class="emoji-picker" id="emojiPicker" style="display:none;">
+        <div class="emoji-grid" id="emojiGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="input-box">
+        <!-- Left toolbar -->
+        <div class="input-toolbar left">
+          <!-- Image upload (gallery) -->
+          <label class="icon-btn toolbar-btn" title="Attach image" for="imageInput">
+            <i class="ph ph-image-square"></i>
+          </label>
+          <input type="file" id="imageInput" accept="image/*" style="display:none;" />
+
+          <!-- Camera (mobile) -->
+          <label class="icon-btn toolbar-btn" title="Take photo" for="cameraInput">
+            <i class="ph ph-camera"></i>
+          </label>
+          <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none;" />
+
+          <!-- Emoji -->
+          <button class="icon-btn toolbar-btn" id="emojiBtn" title="Emoji">
+            <i class="ph ph-smiley"></i>
+          </button>
+        </div>
+
+        <!-- Text input -->
+        <textarea
+          id="messageInput"
+          class="message-textarea"
+          placeholder="Message NexusAI…"
+          rows="1"
+          aria-label="Message input"
+        ></textarea>
+
+        <!-- Right toolbar -->
+        <div class="input-toolbar right">
+          <!-- Microphone / Stop recording -->
+          <button class="icon-btn toolbar-btn mic-btn" id="micBtn" title="Voice input">
+            <i class="ph ph-microphone"></i>
+          </button>
+
+          <!-- Send -->
+          <button class="send-btn" id="sendBtn" title="Send message" disabled>
+            <i class="ph ph-paper-plane-tilt"></i>
+          </button>
+        </div>
+      </div>
+
+      <p class="input-hint">NexusAI can make mistakes. Verify important information.</p>
+    </footer>
+
+  </main>
+
+  <!-- ===== Toast ===== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ===== Scripts ===== -->
+  <script src="js/storage.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/voice.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

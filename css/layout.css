@@ -1,0 +1,117 @@
+/* ============================================================
+   layout.css — Page structure: body, main, topbar
+   ============================================================ */
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  display: flex;
+  height: 100dvh;
+  overflow: hidden;
+  transition: background var(--trans-mid), color var(--trans-mid);
+}
+
+/* ── MAIN PANEL ── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100dvh;
+  transition: margin-left var(--trans-mid);
+  background: var(--bg-base);
+  position: relative;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: var(--bg-glass-heavy);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.topbar-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.model-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.model-badge i {
+  color: var(--accent-1);
+  font-size: 1rem;
+}
+
+/* ── ICON BUTTON (shared) ── */
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  transition: background var(--trans-fast), color var(--trans-fast), transform var(--trans-fast);
+  flex-shrink: 0;
+}
+
+.icon-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+  transform: scale(1.05);
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+/* ── TOAST NOTIFICATION ── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  padding: 10px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 500;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--trans-mid), transform var(--trans-mid);
+  z-index: 999;
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

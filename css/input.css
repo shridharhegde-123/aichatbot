@@ -1,0 +1,218 @@
+/* ============================================================
+   input.css — Bottom input area, toolbar, emoji, image preview
+   ============================================================ */
+
+/* ── INPUT AREA WRAPPER ── */
+.input-area {
+  padding: 12px 16px 14px;
+  background: var(--bg-base);
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* ── IMAGE PREVIEW BAR ── */
+.image-preview-bar {
+  margin-bottom: 10px;
+  animation: fadeInUp 0.25s var(--ease) both;
+}
+
+.image-preview-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.image-preview-wrap img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--accent-1);
+  box-shadow: var(--accent-glow);
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--danger);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: transform var(--trans-fast);
+}
+
+.remove-image-btn:hover {
+  transform: scale(1.15);
+}
+
+/* ── EMOJI PICKER ── */
+.emoji-picker {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 16px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 12px;
+  box-shadow: var(--shadow-lg);
+  z-index: 30;
+  animation: fadeInUp 0.22s var(--ease) both;
+  width: min(320px, calc(100vw - 32px));
+}
+
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.emoji-grid::-webkit-scrollbar { width: 3px; }
+.emoji-grid::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+.emoji-btn-item {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--trans-fast), transform var(--trans-fast);
+}
+
+.emoji-btn-item:hover {
+  background: var(--bg-active);
+  transform: scale(1.2);
+}
+
+/* ── INPUT BOX ── */
+.input-box {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  padding: 8px 10px;
+  transition: border-color var(--trans-fast), box-shadow var(--trans-fast),
+              background var(--trans-mid);
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.input-box:focus-within {
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(124,106,255,0.15);
+}
+
+/* ── TOOLBAR ── */
+.input-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.toolbar-btn {
+  width: 34px;
+  height: 34px;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+  color: var(--text-tertiary);
+  transition: background var(--trans-fast), color var(--trans-fast), transform var(--trans-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.toolbar-btn:hover {
+  background: var(--bg-hover);
+  color: var(--accent-1);
+  transform: scale(1.08);
+}
+
+.toolbar-btn.active {
+  color: var(--accent-1);
+}
+
+/* Recording state */
+.mic-btn.recording {
+  color: var(--danger) !important;
+  animation: mic-pulse 1s ease-in-out infinite;
+}
+
+/* ── TEXTAREA ── */
+.message-textarea {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  padding: 6px 4px;
+  max-height: 160px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  transition: color var(--trans-mid);
+  align-self: center;
+}
+
+.message-textarea::-webkit-scrollbar { display: none; }
+
+.message-textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* ── SEND BUTTON ── */
+.send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--accent-grad);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: filter var(--trans-fast), transform var(--trans-fast), opacity var(--trans-fast);
+  box-shadow: var(--accent-glow);
+}
+
+.send-btn:hover:not(:disabled) {
+  filter: brightness(1.15);
+  transform: scale(1.08);
+}
+
+.send-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.send-btn:disabled {
+  opacity: 0.35;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ── HINT TEXT ── */
+.input-hint {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
